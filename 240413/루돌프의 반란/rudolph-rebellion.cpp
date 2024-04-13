@@ -1,5 +1,8 @@
 #include <iostream>
 #include <vector>
+#include <cmath>
+#include <algorithm>
+#include <cstring>
 
 using namespace std;
 
@@ -8,7 +11,7 @@ int rx, ry;
 int MAP[51][51];
 int curTime = 1;
 
-int dx[8] = {-1. 0, 1, 0, -1, 1, 1, -1};
+int dx[8] = {-1, 0, 1, 0, -1, 1, 1, -1};
 int dy[8] = {0, 1, 0, -1, 1, 1, -1, -1};
 
 struct Santa
@@ -59,7 +62,7 @@ int getSDir(int x, int y) {
 	int curDist = getDist(x, y, rx, ry);
 	for (int i = 0; i < 4; ++i) {
 		int nx = x + dx[i];
-		int ny = x + dy[i];
+		int ny = y + dy[i];
 		if (nx >= 1 && ny >= 1 && nx <= N && ny <= N && MAP[nx][ny] == 0) {
 			int nDist = getDist(nx, ny, rx, ry);
 			if (curDist > nDist) {
@@ -181,7 +184,7 @@ bool checkSanta() {
 }
 
 void addPointOne() {
-	for (int i = 0; i < santa.size(); ++i) {
+	for (int i = 1; i < santa.size(); ++i) {
 		if (!santa[i].isOut) santa[i].score++;
 	}
 }
